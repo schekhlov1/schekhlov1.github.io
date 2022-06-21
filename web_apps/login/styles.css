@@ -42,7 +42,7 @@ body {
 .title {
     text-align: left;
     width: 100%;
-    font-family: 'SB Sans Text';
+    font-family: 'SB Sans Text', serif, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -56,7 +56,7 @@ body {
     border-radius: 8px;
     height: 52px;
     width: 100%;
-    font-family: 'SB Sans Text';
+    font-family: 'SB Sans Text', serif, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -73,7 +73,7 @@ body {
 }
 
 .button-link {
-    font-family: 'SB Sans Text';
+    font-family: 'SB Sans Text', serif, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
