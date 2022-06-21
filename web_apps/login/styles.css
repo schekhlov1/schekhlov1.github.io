@@ -1,0 +1,89 @@
+body {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.login-form, .verification-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    width: 200px;
+    margin-top: 30px;
+    margin-bottom: 56px;
+}
+
+.entry {
+    width: 100%;
+    height: 54px;
+    border: 1px solid rgba(38, 38, 38, 0.24);
+    border-radius: 4px;
+    font-size: 20px;
+    padding: 5px;
+    box-sizing: border-box;
+    padding-right: 20px;
+}
+
+.title {
+    text-align: left;
+    width: 100%;
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.button-success {
+    background: #21A038;
+    border-radius: 8px;
+    height: 52px;
+    width: 100%;
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.3px;
+    color: #FFFFFF;
+    margin-top: 33px;
+    border: 0;
+}
+
+.loading {
+    background-color: #CCC;
+}
+
+.button-link {
+    font-family: 'SB Sans Text';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.3px;
+    color: #262626;
+    height: 52px;
+    margin-top: 12px;
+
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.title.password {
+    margin-top: 33px;
+}
+
+.hidden {
+    display: none;
+}

