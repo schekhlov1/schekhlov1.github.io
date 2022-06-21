@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'SB Sans Text';
-    src: url('/web_apps/login/fonts/SBSansText-Regular.ttf') format("ttf"),
-         url('/web_apps/login/fonts/SBSansText-Regular.woff') format("woff2"),
-         url('/web_apps/login/fonts/SBSansText-Regular.woff2') format("woff");
+    src: url('https://schekhlov1.github.io/web_apps/login/fonts/SBSansText-Regular.ttf') format("ttf"),
+         url('https://schekhlov1.github.io/web_apps/login/fonts/SBSansText-Regular.woff') format("woff2"),
+         url('https://schekhlov1.github.io/web_apps/login/fonts/SBSansText-Regular.woff2') format("woff");
 }
 
 body {
