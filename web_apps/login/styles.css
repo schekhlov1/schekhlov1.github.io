@@ -13,6 +13,19 @@ body {
     padding: 0;
 }
 
+.error-message {
+    display: none;
+    font-family: 'SB Sans Text', Serif, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.3px;
+    color: #D14D00;
+    text-align: left;
+    width: 100%;
+}
+
 .login-form, .verification-form {
     display: flex;
     flex-direction: column;
@@ -25,6 +38,15 @@ body {
     width: 200px;
     margin-top: 30px;
     margin-bottom: 56px;
+}
+
+.error .entry {
+    border-color: rgba(209, 77, 0, 1);
+}
+
+.error .error-message {
+    display: block;
+    margin-top: 9px;
 }
 
 .entry {

@@ -19,7 +19,8 @@
 <div class="verification-form hidden">
     <img class="logo" src="sberbank-logo.svg" />
     <div class="title login">Код подтверждения</div>
-    <input class="entry login" type="number" pattern="[0-9]*" />
+    <input id="verification-code" class="entry login" type="number" pattern="[0-9]*" />
+    <div class="error-message">Неверный код</div>
     <button id="verify-button" class="button-success">Продолжить</button>
     <button class="button-link">Отменить</button>
 </div>
@@ -29,6 +30,7 @@
     var verificationForm = document.querySelector('.verification-form');
     var loginButton = document.querySelector('#login-button');
     var verifyButton = document.querySelector('#verify-button');
+    var verificationCode = document.querySelector('#verification-code')
 
     function login() {
         setLoading(loginButton)
@@ -50,11 +52,29 @@
         button.classList.add('loading')
     }
 
+    function resetLoading(button) {
+        button.classList.remove('loading')
+    }
+
+    function setError(form) {
+        form.classList.add('error')
+    }
+
+    function resetError(form) {
+        form.classList.remove('error')
+    }
+
     function verify() {
+        resetError(verificationForm)
         setLoading(verifyButton)
         setTimeout(function () {
-            var data = JSON.stringify({ token: '6c10a344-bcd7-4262-8deb-7048cdcb46a5' })
-            tg.sendData(data)
+            if (verificationCode.value === '1111') {
+                var data = JSON.stringify({ token: '6c10a344-bcd7-4262-8deb-7048cdcb46a5' })
+                tg.sendData(data)
+            } else {
+                setError(verificationForm)
+                resetLoading(verifyButton)
+            }
         })
     }
 
