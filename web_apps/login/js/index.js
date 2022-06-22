@@ -46,7 +46,7 @@ function verify() {
     setLoading(verifyButton)
     setTimeout(function () {
         if (verificationCode.value === '1111') {
-            var data = JSON.stringify({ token: '6c10a344-bcd7-4262-8deb-7048cdcb46a5' })
+            var data = JSON.stringify({ action: 'login', token: '6c10a344-bcd7-4262-8deb-7048cdcb46a5' })
             tg.sendData(data)
         } else {
             setError(verificationForm)
