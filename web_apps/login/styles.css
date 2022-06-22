@@ -15,7 +15,7 @@ body {
 
 .error-message {
     display: none;
-    font-family: 'SB Sans Text', Serif, sans-serif;
+    font-family: 'SB Sans Text', arial, Serif, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -57,14 +57,33 @@ body {
     font-size: 20px;
     padding: 5px;
     box-sizing: border-box;
+    padding-left: 17px;
     appearance: none;
     -webkit-appearance: none;
+}
+
+/* Placeholder style */
+::-webkit-input-placeholder {
+    font-family: 'SB Sans Text', arial, serif, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.3px;
+    color: rgba(38, 38, 38, 0.55);
+}
+
+/* Hide input arrows for type="number" */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .title {
     text-align: left;
     width: 100%;
-    font-family: 'SB Sans Text', serif, sans-serif;
+    font-family: 'SB Sans Text', arial, serif, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -78,7 +97,7 @@ body {
     border-radius: 8px;
     height: 52px;
     width: 100%;
-    font-family: 'SB Sans Text', serif, sans-serif;
+    font-family: 'SB Sans Text', arial, serif, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -95,7 +114,7 @@ body {
 }
 
 .button-link {
-    font-family: 'SB Sans Text', serif, sans-serif;
+    font-family: 'SB Sans Text', arial, serif, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -119,3 +138,15 @@ body {
 .hidden {
     display: none;
 }
+
+.description {
+    font-family: 'SF Pro Text', arial, serif, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: -0.4px;
+    color: #000000;
+    margin-bottom: 32px;
+}
+
