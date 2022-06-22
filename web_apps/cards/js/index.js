@@ -32,7 +32,6 @@ function selectCard(e) {
     const type = e.currentTarget.getAttribute('data-type');
     const title = e.currentTarget.getAttribute('data-title');
     const data = JSON.stringify({ type, title })
-    alert(type + ':' + title)
     tg.sendData(data)
 }
 
