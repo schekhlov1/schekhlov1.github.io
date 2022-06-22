@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width,shrink-to-fit=no,initial-scale=1,maximum-scale=1" />
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="../common/styles/styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+<div class="card-types-form ">
+    <div class="header">
+        Какой тип карты нужно выпустить?
+    </div>
+    <div class="card-list">
+        <div class="card-type-item" data-type="debit">
+            <img src="img/cards/debit.svg" />
+            <div class="card-description">
+                Дебетовая
+            </div>
+        </div>
+        <div class="card-type-item" data-type="credit">
+            <img src="img/cards/credit.svg" />
+            <div class="card-description">
+                Кредитная
+            </div>
+        </div>
+    </div>
+</div>
+<div class="debet-cards-form hidden">
+    <div class="alert">
+        <div>Хотите выпустить <b>виртуальную карту</b> или оформить <b>классическую пластиковую карту?</b></div>
+        <div>⚠️ Виртуальная карта будет выпущена за несколько минут, и вам не нужно будет за ней заезжать в отделение, чтобы ее забрать. Операции по ней будут доступны сразу же.</div>
+    </div>
+    <div class="card-list">
+        <div class="card-item" data-type="debit" data-title="Виртуальная карта МИР">
+            <img src="img/cards/virtual_mir.svg" />
+            <div class="card-title">Виртуальная карта МИР</div>
+            <div class="card-description">Виртуальная карта без пластика, которая живёт в вашем смартфоне</div>
+        </div>
+        <div class="card-item" data-type="debit" data-title="Visa Classic">
+            <img src="img/cards/visa_classic.svg" />
+            <div class="card-title">Visa Classic</div>
+        </div>
+        <div class="card-item" data-type="debit" data-title="МС Classic - дебетовая">
+            <img src="img/cards/mastercard_classic2.svg" />
+            <div class="card-title">МС Classic - дебетовая</div>
+        </div>
+    </div>
+</div>
+<div class="credit-cards-form hidden">
+    <div class="alert">
+        <div>Хотите выпустить <b>виртуальную карту</b> или оформить <b>классическую пластиковую карту?</b></div>
+        <div>⚠️ Виртуальная карта будет выпущена за несколько минут, и вам не нужно будет за ней заезжать в отделение, чтобы ее забрать. Операции по ней будут доступны сразу же.</div>
+    </div>
+    <div class="card-list">
+        <div class="card-item" data-type="credit" data-title="Visa Classic">
+            <img src="img/cards/visa_classic.svg" />
+            <div class="card-title">Visa Classic</div>
+        </div>
+        <div class="card-item" data-type="credit" data-title="МС Classic">
+            <img src="img/cards/mastercard_classic2.svg" />
+            <div class="card-title">МС Classic</div>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" src="js/index.js"></script>
+</body>
+</html>

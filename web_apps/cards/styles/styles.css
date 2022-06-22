@@ -1,0 +1,111 @@
+body {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.card-types-form {
+    display: flex;
+    flex-direction: column;
+    margin: 60px 20px 0 20px;
+}
+
+.card-types-form .header {
+    font-family: 'SF Pro Text', Arial;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.4px;
+    color: #000000;
+    line-height: 45px;
+    border-bottom: 0.5px solid rgba(37, 37, 37, 0.25);
+}
+
+.card-types-form .card-list {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 24px;
+}
+
+.card-types-form .card-type-item {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid rgba(38, 38, 38, 0.08);
+    box-shadow: 0px 1px 2px rgba(38, 38, 38, 0.04), 0px 2px 4px rgba(38, 38, 38, 0.16);
+    border-radius: 8px;
+}
+
+.card-types-form .card-type-item img {
+    width: 150px;
+    height: 150px;
+}
+
+.card-types-form .card-description {
+    font-family: 'SF Pro Text', Arial;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -0.4px;
+    color: #262626;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.debet-cards-form .alert, .credit-cards-form .alert {
+    margin: 52px 20px 0 20px;
+    background: #FFFFFF;
+    border: 0.5px solid #B5CADD;
+    border-radius: 16px;
+    padding: 12px;
+    font-family: 'SF Pro Text', Arial;
+}
+
+.debet-cards-form .card-list, .credit-cards-form .card-list {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    gap: 15px;
+}
+
+.debet-cards-form .card-item, .credit-cards-form .card-item {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border: 1px solid rgba(38, 38, 38, 0.08);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.debet-cards-form img, .credit-cards-form img {
+    width: 50%;
+}
+
+.debet-cards-form .card-title, .credit-cards-form .card-title {
+    font-family: 'SF Pro Text', Arial;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
+    color: #262626;
+}
+
+.debet-cards-form .card-description, .credit-cards-form .card-description {
+    font-family: 'SF Pro Text', Arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.4px;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+
