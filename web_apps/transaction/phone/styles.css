@@ -26,7 +26,7 @@ body {
     width: 100%;
 }
 
-.login-form, .verification-form {
+.login-form, .verification-form, .control-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,6 +77,18 @@ body {
     margin-bottom: 9px;
 }
 
+.text {
+    text-align: left;
+    width: 100%;
+    font-family: 'SB Sans Text', serif, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(0, 0, 0);
+    margin-bottom: 9px;
+}
+
 .button-success {
     background: #21A038;
     border-radius: 8px;
@@ -108,7 +120,6 @@ body {
     color: #262626;
     height: 52px;
     margin-top: 12px;
-
     background: none;
     border: none;
     padding: 0;
@@ -123,4 +134,11 @@ body {
 .hidden {
     display: none;
 }
+
+.visa-card , .mc-card{
+    width: 351px;
+    margin-top: 30px;
+    height: 152px
+}
+
 

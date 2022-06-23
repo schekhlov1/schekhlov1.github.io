@@ -1,0 +1,122 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width,shrink-to-fit=no,initial-scale=1,maximum-scale=1" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+<div class="login-form">
+    <img class="logo" src="sberbank-logo.svg" />
+    <div class="title login">Введите номер телефона</div>
+    <input id = "card-num" class="entry login"/>
+    <div class="error-message">Неверно указан телефон!</div>
+    <div class="title login">Сумма</div>
+    <input id = "trans-sum" class="entry login" />
+    <button id="login-button" class="button-success">Продолжить</button>
+</div>
+<div class="control-form hidden">
+    <img class="logo" src="sberbank-logo.svg" />
+    <div class="title login">Перевод будет выполнен:</div>
+    <div class = "title">Номер телефона</div>
+    <div id = "controlCardNum" class = "text" ></div>
+    <div class = "title">Получатель</div>
+    <div class = "text">Анна Владимировна М.</div>
+    <div class = "title">Сумма</div>
+    <div id = "controlSum" class = "text"></div>
+    <button id="control-button" class="button-success">Подтвердить</button>
+    <button class="button-link">Отменить</button>
+</div>
+<div class="verification-form hidden">
+    <img class="logo" src="sberbank-logo.svg" />
+    <div class="title login">На ваш телефон отправлен одноразовый пароль подтверждения операции. Введите полученный код.</div>
+    <div class="title login">Код подтверждения</div>
+    <input id="verification-code" class="entry login" type="number" pattern="[0-9]*" placeholder="Введите код подтверждения из SMS" />
+    <div class="error-message">Неверный код</div>
+    <button id="verify-button" class="button-success">Продолжить</button>
+    <button class="button-link">Отменить</button>
+</div>
+<script>
+    var tg = window.Telegram.WebApp;
+    var loginForm = document.querySelector('.login-form');
+    var verificationForm = document.querySelector('.verification-form');
+    var controlForm = document.querySelector('.control-form');
+    var loginButton = document.querySelector('#login-button');
+    var controlButton = document.querySelector('#control-button');
+    var verifyButton = document.querySelector('#verify-button');
+    var verificationCode = document.querySelector('#verification-code')
+    var cardNum = document.querySelector('#card-num')
+    var transSum = document.querySelector('#trans-sum')
+    var visa = document.querySelector('.visa-card')
+    var mc = document.querySelector('.mc-card')
+
+    function login() {
+        setLoading(loginButton)
+        setTimeout(function () {
+            hideForm(loginForm)
+            showForm(controlForm)
+            document.getElementById("controlCardNum").innerHTML = cardNum.value
+            document.getElementById("controlSum").innerHTML = transSum.value
+        }, 1000)
+    }
+
+    function control() {
+        setLoading(controlButton)
+        
+        setTimeout(function () {
+            hideForm(controlForm)
+            showForm(verificationForm)
+        }, 1000)
+    }
+    
+    function formatCardCode() {
+        var cardCode = this.value.replace(/[^\d]/g, '').substring(0,16);
+        cardCode = cardCode != '' ? cardCode.match(/.{1,4}/g).join('-') : '';
+        this.value = cardCode;
+    }   
+
+    function showForm(form) {
+        form.classList.remove('hidden');
+    }
+
+    function hideForm(form) {
+        form.classList.add('hidden');
+    }
+
+    function setLoading(button) {
+        button.classList.add('loading')
+    }
+
+    function resetLoading(button) {
+        button.classList.remove('loading')
+    }
+
+    function setError(form) {
+        form.classList.add('error')
+    }
+
+    function resetError(form) {
+        form.classList.remove('error')
+    }
+
+    function verify() {
+        resetError(verificationForm)
+        setLoading(verifyButton)
+        setTimeout(function () {
+            if (verificationCode.value === '1111') {
+                var data = JSON.stringify({ token: '6c10a344-bcd7-4262-8deb-7048cdcb46a5' })
+                tg.sendData(data)
+            } else {
+                setError(verificationForm)
+                resetLoading(verifyButton)
+            }
+        })
+    }
+
+    loginButton.addEventListener('click', login);
+    controlButton.addEventListener('click', control);
+    verifyButton.addEventListener('click', verify);
+</script>
+</body>
+</html>
