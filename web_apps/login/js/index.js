@@ -7,7 +7,10 @@ var loginButton = document.querySelector('#login-button');
 var verifyButton = document.querySelector('#verify-button');
 var verificationCode = document.querySelector('#verification-code')
 
-alert(tg.colorScheme)
+function setSchema(schema) {
+    const body = document.querySelector('body');
+    body.classList.add(schema)
+}
 
 function login() {
     const login = loginField.value;
@@ -57,5 +60,6 @@ function verify() {
     })
 }
 
+setSchema(tg.colorScheme)
 loginButton.addEventListener('click', login);
 verifyButton.addEventListener('click', verify);

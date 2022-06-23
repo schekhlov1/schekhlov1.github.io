@@ -13,6 +13,29 @@ body {
     padding: 0;
 }
 
+body.dark {
+    background-color: #1D2733;
+}
+
+.dark input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+
+.dark .title {
+    color: #FFFFFF;
+}
+
+.dark button {
+    color: #FFFFFF;
+}
+
+.dark .description {
+    color: #FFFFFF;
+}
+
 .error-message {
     display: none;
     font-family: 'SB Sans Text', arial, Serif, sans-serif;
@@ -92,7 +115,7 @@ body {
 }
 
 .loading {
-    background-color: #CCC;
+    opacity: 0.5;
 }
 
 .button-link {
