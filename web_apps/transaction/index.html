@@ -1,0 +1,140 @@
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="viewport" content="width=device-width,shrink-to-fit=no,initial-scale=1,maximum-scale=1" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+<div class="login-form">
+    <img class="logo" src="sberbank-logo.svg" />
+    <div class="title login">Введите номер карты</div>
+    <input id = "card-num" class="entry login" onchange={setState} placeholder = "XXXX-XXXX-XXXX-XXXX" />
+    <div class="error-message">Неверно введён номер карты!</div>
+    <div class="title login">Сумма</div>
+    <input class="entry login" />
+    <button id="login-button" class="button-success">Продолжить</button>
+    <img class="visa-card hidden" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" />
+    <img class="mc-card hidden" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" />
+</div>
+<div class="verification-form hidden">
+    <img class="logo" src="sberbank-logo.svg" />
+    <div class="title login">Код подтверждения</div>
+    <input id="verification-code" class="entry login" type="number" pattern="[0-9]*" />
+    <div class="error-message">Неверный код</div>
+    <button id="verify-button" class="button-success">Продолжить</button>
+    <button class="button-link">Отменить</button>
+</div>
+<script>
+    var tg = window.Telegram.WebApp;
+    var loginForm = document.querySelector('.login-form');
+    var verificationForm = document.querySelector('.verification-form');
+    var loginButton = document.querySelector('#login-button');
+    var verifyButton = document.querySelector('#verify-button');
+    var verificationCode = document.querySelector('#verification-code')
+    var cardNum = document.querySelector('#card-num')
+    var visa = document.querySelector('.visa-card')
+    var mc = document.querySelector('.mc-card')
+
+
+    var state = null
+    function login() {
+        setLoading(loginButton)
+        setTimeout(function () {
+            hideForm(loginForm)
+            showForm(verificationForm)
+        }, 1000)
+    }
+
+
+    function formatCardCode() {
+        var cardCode = this.value.replace(/[^\d]/g, '').substring(0,16);
+        cardCode = cardCode != '' ? cardCode.match(/.{1,4}/g).join('-') : '';
+        this.value = cardCode;
+    }   
+
+    function checkSum() {
+        if(cardNum.value.split('-').join('').length === 16 && !Luhn(cardNum.value.split('-').join(''))) {
+            setError(loginForm)
+            resetLoading(loginButton)
+        }
+    }
+
+    function Luhn (card) {
+    let checksum = 0;
+    const cardnumbers = card.split('').map(Number);
+    
+    for (const [index, num] of cardnumbers.entries()) {
+        if (index % 2 === 0) {
+        let buffer = num * 2;
+        buffer > 9 ? checksum += buffer - 9 : checksum += buffer;
+        }
+        else {
+        checksum += num;
+        }
+    }
+    return checksum % 10 === 0 ? true : false;
+    }
+
+    function showLogo() {
+        if(cardNum.value.split('-').join('')[0] === 4) {
+            showImg(visa)
+        } else if(cardNum.value.split('-').join('')[0] === 5) {
+            showImg(mc)
+        }
+     }
+
+    function showImg (img) {
+        img.classList.remove('hidden')
+    }
+
+    function hideImg (img) {
+        img.classList.add('hidden')
+    }
+
+    function showForm(form) {
+        form.classList.remove('hidden');
+    }
+
+    function hideForm(form) {
+        form.classList.add('hidden');
+    }
+
+    function setLoading(button) {
+        button.classList.add('loading')
+    }
+
+    function resetLoading(button) {
+        button.classList.remove('loading')
+    }
+
+    function setError(form) {
+        form.classList.add('error')
+    }
+
+    function resetError(form) {
+        form.classList.remove('error')
+    }
+
+    function verify() {
+        resetError(verificationForm)
+        setLoading(verifyButton)
+        setTimeout(function () {
+            if (verificationCode.value === '1111') {
+                var data = JSON.stringify({ token: '6c10a344-bcd7-4262-8deb-7048cdcb46a5' })
+                tg.sendData(data)
+            } else {
+                setError(verificationForm)
+                resetLoading(verifyButton)
+            }
+        })
+    }
+
+    cardNum.addEventListener('input', checkSum)
+    cardNum.addEventListener('input', formatCardCode, false)
+    loginButton.addEventListener('click', login);
+    verifyButton.addEventListener('click', verify);
+</script>
+</body>
+</html>
