@@ -60,6 +60,6 @@ function verify() {
     })
 }
 
-setSchema(tg.colorScheme)
+setSchema(tg.colorScheme);
 loginButton.addEventListener('click', login);
 verifyButton.addEventListener('click', verify);

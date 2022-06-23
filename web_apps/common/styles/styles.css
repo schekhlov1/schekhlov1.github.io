@@ -9,6 +9,10 @@
     color: rgba(38, 38, 38, 0.55);
 }
 
+.dark ::-webkit-input-placeholder {
+    color: #FFFFFF;
+}
+
 /* Hide input arrows for type="number" */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -18,4 +22,14 @@ input::-webkit-inner-spin-button {
 
 .hidden {
     display: none;
+}
+
+.dark input:focus {
+    outline: none !important;
+    border: 1px solid #FFFFFF;
+}
+
+input:focus {
+    outline: none !important;
+    border: 1px solid #000000;
 }
