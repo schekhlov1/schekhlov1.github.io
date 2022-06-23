@@ -7,6 +7,8 @@ var loginButton = document.querySelector('#login-button');
 var verifyButton = document.querySelector('#verify-button');
 var verificationCode = document.querySelector('#verification-code')
 
+alert(tg.colorScheme)
+
 function login() {
     const login = loginField.value;
     const password = passwordField.value;
