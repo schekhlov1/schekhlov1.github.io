@@ -13,29 +13,6 @@ body {
     padding: 0;
 }
 
-body.dark {
-    background-color: #1D2733;
-}
-
-.dark input {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 4px;
-    color: #FFFFFF;
-}
-
-.dark .title {
-    color: #FFFFFF;
-}
-
-.dark button {
-    color: #FFFFFF;
-}
-
-.dark .description {
-    color: #FFFFFF;
-}
-
 .error-message {
     display: none;
     font-family: 'SB Sans Text', arial, Serif, sans-serif;
@@ -70,19 +47,6 @@ body.dark {
 .error .error-message {
     display: block;
     margin-top: 9px;
-}
-
-.entry {
-    width: 100%;
-    height: 54px;
-    border: 1px solid rgba(38, 38, 38, 0.24);
-    border-radius: 4px;
-    font-size: 20px;
-    padding: 5px;
-    box-sizing: border-box;
-    padding-left: 17px;
-    appearance: none;
-    -webkit-appearance: none;
 }
 
 .title {
@@ -154,4 +118,5 @@ body.dark {
     color: #000000;
     margin-bottom: 32px;
 }
+
 
