@@ -41,6 +41,18 @@ body {
     border-radius: 8px;
 }
 
+.dark .card-types-form .card-type-item {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .header {
+    color: #FFFFFF;
+}
+
+.dark .card-description {
+    color: #FFFFFF !important;
+}
+
 .card-types-form .card-type-item img {
     width: 150px;
     height: 150px;
@@ -68,6 +80,13 @@ body {
     font-family: 'SF Pro Text', Arial;
 }
 
+.dark .debet-cards-form .alert, .dark .credit-cards-form .alert {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: #FFFFFF;
+}
+
+
 .debet-cards-form .card-list, .credit-cards-form .card-list {
     display: flex;
     flex-direction: column;
@@ -83,6 +102,15 @@ body {
     border-radius: 8px;
     padding: 16px;
 }
+
+.dark .debet-cards-form .card-item, .dark .credit-cards-form .card-item {
+    background: rgba(255, 255, 255, 0.05);
+    color: #FFFFFF;
+}
+.dark .card-title {
+    color: #FFFFFF !important;
+}
+
 
 .debet-cards-form img, .credit-cards-form img {
     width: 50%;

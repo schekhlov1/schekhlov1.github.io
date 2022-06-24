@@ -42,3 +42,9 @@ cardTypes.forEach(card => {
 cards.forEach(card => {
     card.addEventListener('click', selectCard);
 })
+
+function setSchema(schema) {
+    const body = document.querySelector('body');
+    body.classList.add(schema)
+}
+setSchema(tg.colorScheme);
