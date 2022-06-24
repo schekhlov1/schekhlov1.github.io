@@ -131,7 +131,7 @@ function setSchema(schema) {
     body.classList.add(schema)
 }
 
-// setSchema(tg.colorScheme);
+setSchema(tg.colorScheme);
 cardNum.addEventListener('input', checkLunaAndLogo)
 cardNum.addEventListener('input', formatCardCode, false)
 loginButton.addEventListener('click', login);
