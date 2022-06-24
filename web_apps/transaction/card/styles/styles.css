@@ -126,10 +126,10 @@ body {
 
 .visa-card, .mc-card, .mir-card {
     height: 30px;
-    margin-top: 10px;
+    margin-top: 12px;
     position: absolute;
     right: 12px;
-    top: 0;
+    /*top: 0;*/
 }
 
 .dark .control-form .title {
